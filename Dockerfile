@@ -3,11 +3,20 @@
 # VERSION 0.0.3
 
 FROM ubuntu:16.04
-MAINTAINER Dariel Dato-on <oddrationale@gmail.com>
+MAINTAINER Prince Wang <princewang1994@gmail.com>
 
-RUN apt-get update && \
-    apt-get install -y python-pip libsodium18
-RUN pip install shadowsocks==2.8.2
+COPY sources.list /etc/apt/sources.list
+
+RUN apt-get update
+RUN apt-get install -y python-pip
+RUN pip install shadowsocks
+
+RUN mkdir /etc/shadowsocks
+
+EXPOSE 8388
 
 # Configure container to run as an executable
-ENTRYPOINT ["/usr/local/bin/ssserver"]
+CMD ["/usr/local/bin/ssserver", "-c", "/etc/shadowsocks/ssserver.conf"]
+
+# Clean up for smaller image
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
