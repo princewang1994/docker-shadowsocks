@@ -1,6 +1,6 @@
-# shadowsocks
+# Shadowsocks Dockerfile
 #
-# VERSION 0.0.3
+# VERSION 0.0.4
 
 FROM ubuntu:16.04
 MAINTAINER Prince Wang <princewang1994@gmail.com>
@@ -8,13 +8,17 @@ MAINTAINER Prince Wang <princewang1994@gmail.com>
 COPY sources.list /etc/apt/sources.list
 COPY startup.sh /root/startup.sh
 
+# Update apt source
 RUN apt-get update
 RUN apt-get install -y python-pip
-RUN pip install shadowsocks
 
+# Install python shadowsocks
+RUN pip install shadowsocks
 RUN mkdir /etc/shadowsocks
 
+# Expose port
 EXPOSE 8388
+EXPOSE 1080
 
 # Configure container to run as an executable
 CMD ["/bin/bash", "/root/startup.sh"]
