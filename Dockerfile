@@ -5,8 +5,8 @@
 FROM ubuntu:16.04
 MAINTAINER Prince Wang <princewang1994@gmail.com>
 
-COPY sources.list /etc/apt/sources.list
-COPY startup.sh /root/startup.sh
+COPY mirrors/sources.list /etc/apt/sources.list
+COPY scripts/startup.sh /root/startup.sh
 
 # Update apt source
 RUN apt-get update

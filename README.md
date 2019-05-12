@@ -5,14 +5,26 @@ This Dockerfile builds an image with the Python implementation of [shadowsocks](
 ## Quick Start
 -----------
 
+### Build Image
+
+```shell
+$ docker build . -t prince/shadowsocks:latest
+```
+
 ### Run server
 
 ```shell
-	$ ./run-server.sh
+$ ./scripts/run-server.sh
 ```
 
 ### Run local
 
 ```shell
-	$ ./run-local.sh
+$ ./scripts/run-local.sh
+```
+
+### Or use docker-compose
+
+```shell
+$ docker-compose up -d
 ```
